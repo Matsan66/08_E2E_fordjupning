@@ -171,16 +171,13 @@ def test_timer_app_delete_note(timer_app_page):
     expect(note_widget).to_be_visible()
 
     # 3. Kontrollera att papperskorgen visas
-    delete_button = timer_app_page.locator(".icon.close")
-
-    expect(delete_button).to_be_visible()
+    expect(timer_app_page.get_by_text(" 🗑️ ")).to_be_visible()
 
     # 4. Klicka på papperskorgen
-    delete_button.click()
+    timer_app_page.get_by_text(" 🗑️ ").click()
 
     # 6. Kontrollera att anteckningen försvinner
     expect(note_widget).not_to_be_visible()
-
 
 # ------------------------------------------------------------------------
 # User story 6 - Byt plats på Widgets
