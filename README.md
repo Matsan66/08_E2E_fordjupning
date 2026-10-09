@@ -40,3 +40,5 @@ def timer_app_page(page: Page):
     page.goto("https://lejonmanen.github.io/timer-vue/")
     return page
 ``` 
+
+Run tests with> pytest -v
