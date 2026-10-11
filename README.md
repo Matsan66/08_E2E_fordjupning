@@ -32,7 +32,7 @@
 ```
 User stories, Acceptanskriterier och Testsceanrios finns i testfilen "test_timer_app.py"
 
-En fixture används för att öppna och läsa in sidan Timer app som ett page objekt
+En fixture används för att öppna och läsa in sidan "Timer app" som ett page objekt
 ```python
 import pytest
 from playwright.sync_api import Page
@@ -65,7 +65,7 @@ Run tests with:
 ```
 User stories, Acceptanskriterier och Testsceanrios finns i testfilen "test_register_app.py"
 
-En fixture används för att öppna och läsa in sidan Timer app som ett page objekt
+En fixture används för att öppna och läsa in sidan "Registrera dig" som ett page objekt
 ```python
 import pytest
 from playwright.sync_api import Page
