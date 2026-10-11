@@ -32,8 +32,11 @@
 ```
 User stories, Acceptanskriterier och Testsceanrios finns i testfilen "test_timer_app.py"
 
-En fixture används för att öppna och läsa in sidan Timer appsom ett page objekt
+En fixture används för att öppna och läsa in sidan Timer app som ett page objekt
 ```python
+import pytest
+from playwright.sync_api import Page
+
 @pytest.fixture
 def timer_app_page(page: Page):
     """Öppnar Timer app."""
@@ -41,4 +44,38 @@ def timer_app_page(page: Page):
     return page
 ``` 
 
-Run tests with> pytest -v
+Run tests with:
+### pytest -m timer -v   
+
+
+## 2️⃣ Öva mera - om du hinner
+
+### Testfall
+```
+- test_register_app_get_title
+- test_register_app_get_header
+- test_register_app_input_name
+- test_register_app_input_birth_year
+- test_register_app_incorrect_birth_year
+- test_register_app_input_mail_address
+- test_register_app_incorrect_mail_address
+- test_register_app_input_password
+- test_register_app_input_to_short_password
+- test_register_app_submit_button_activation
+```
+User stories, Acceptanskriterier och Testsceanrios finns i testfilen "test_register_app.py"
+
+En fixture används för att öppna och läsa in sidan Timer app som ett page objekt
+```python
+import pytest
+from playwright.sync_api import Page
+
+@pytest.fixture
+def register_app_page(page: Page):
+    """Öppnar register app."""
+    page.goto("https://tap-ht24-testverktyg.github.io/form-demo/")
+    return page
+``` 
+
+Run tests with:
+### pytest -m register -v   

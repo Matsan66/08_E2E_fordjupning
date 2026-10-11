@@ -1,5 +1,6 @@
 import re
 from playwright.sync_api import expect
+import pytest
 
 # ------------------------------------------------------------------------
 # User story 1 - Sidans titel
@@ -16,6 +17,7 @@ from playwright.sync_api import expect
 # 2. Kontrollera att titeln i AK 1 visas
 
 
+@pytest.mark.timer
 def test_timer_app_get_title(timer_app_page):
 
     # Visas titeln "Timer app" på sidan
@@ -40,6 +42,7 @@ def test_timer_app_get_title(timer_app_page):
 # 4. Kontrollera att en timer visas
 
 
+@pytest.mark.timer
 def test_timer_app_open_timer(timer_app_page):
 
     # 1. Kontrollera knappen "Add timer" visas
@@ -78,6 +81,7 @@ def test_timer_app_open_timer(timer_app_page):
 # 6. ontrollera att timern försvinner
 
 
+@pytest.mark.timer
 def test_timer_app_delete_timer(timer_app_page):
 
     # 1. Klicka på knappen "Add timer"
@@ -119,6 +123,7 @@ def test_timer_app_delete_timer(timer_app_page):
 # 4. Kontrollera att en ny anteckning visas
 
 
+@pytest.mark.timer
 def test_timer_app_open_note(timer_app_page):
 
     # 1. Kontrollera att knappen "Add note" visas
@@ -158,6 +163,7 @@ def test_timer_app_open_note(timer_app_page):
 # 6. Kontrollera att anteckningen försvinner
 
 
+@pytest.mark.timer
 def test_timer_app_delete_note(timer_app_page):
 
     # 1. Klicka på knappen "Add note"
@@ -201,17 +207,12 @@ def test_timer_app_delete_note(timer_app_page):
 # 6. Kontrollera att anteckningen är placerad över timern
 
 
+@pytest.mark.timer
 def test_move_note_above_timer(timer_app_page):
 
     # 1. Öppna en timer
     timer_app_page.get_by_role(
         "button", name="Add timer").click()
-
-    timer_widget = timer_app_page.locator(".widget").filter(
-        has=timer_app_page.get_by_role(
-            "heading", name=re.compile("Break")
-        )
-    )
 
     # 3. Öppna en anteckning
     timer_app_page.get_by_role(
@@ -288,6 +289,8 @@ def test_move_note_above_timer(timer_app_page):
     # 9. Klicka på knappen för att återställa timern
     # 10. Kontrollera att timern fått det nya värdet
 
+
+@pytest.mark.timer
 def test_change_timer_value(timer_app_page):
 
     # 1. Öppna en timer
@@ -324,7 +327,6 @@ def test_change_timer_value(timer_app_page):
     # 9. Kontrollera att timern fått det nya värdet
     expect(time_input).to_have_value("10:00")
 
-
     # ------------------------------------------------------------------------
     # User story 7 - Ändra texten för anteckning
     # ------------------------------------------------------------------------
@@ -332,9 +334,11 @@ def test_change_timer_value(timer_app_page):
     # så att den visar korrekt information.
 
     # Acceptanskriteria
-    # AK1: När en anteckning är skapad ska man kunna klicka på texten för att markera den
+    # AK1: När en anteckning är skapad ska man kunna klicka på texten
+    # för att markera den
     # 1. Texten ska markeras för ändring då man klickar på den
-    # AK2: Om jag ändrar texten och trycker enter ska den nya texten ersätta den ursprungliga
+    # AK2: Om jag ändrar texten och trycker enter ska den nya texten
+    # ersätta den ursprungliga
     # 1. Den nya texten ska ersätta den gamla då man trycker enter
 
     # Scenario
@@ -347,6 +351,8 @@ def test_change_timer_value(timer_app_page):
     # 7. Tryck enter
     # 8. Kontrollera att den nya texten ersatt den gamla
 
+
+@pytest.mark.timer
 def test_change_note_text(timer_app_page):
     # 1. Öppna en anteckning
     timer_app_page.get_by_role(
@@ -381,7 +387,6 @@ def test_change_note_text(timer_app_page):
 
     expect(new_note_text).to_be_visible()
 
-
     # ------------------------------------------------------------------------
     # User story 8 - Ändra temafärg
     # ------------------------------------------------------------------------
@@ -401,6 +406,8 @@ def test_change_note_text(timer_app_page):
     # 3. Klicka på knappen med texten "Dark"
     # 4. Kontrollera att sidans tema ändrades till Dark
 
+
+@pytest.mark.timer
 def test_change_from_light_to_dark_theme(timer_app_page):
     # 1. Säkerställ att sidans tema är "Light"
     light_button = timer_app_page.get_by_role(

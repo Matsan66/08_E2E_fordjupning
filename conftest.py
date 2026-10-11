@@ -11,3 +11,9 @@ def timer_app_page(page: Page):
     """Öppnar Timer app."""
     page.goto("https://lejonmanen.github.io/timer-vue/")
     return page
+
+@pytest.fixture
+def register_app_page(page: Page):
+    """Öppnar register app."""
+    page.goto("https://tap-ht24-testverktyg.github.io/form-demo/")
+    return page
